@@ -1,6 +1,7 @@
 package main.application.configuration.security;
 
-import main.repository.UserRepository;
+import com.futoria.core.application.configuration.security.UserDetailsServiceImpl;
+import com.futoria.core.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    public void setUserRepository(@Qualifier("FTRUserRepository") UserRepository userRepository) {
+    public void setUserRepository(@Qualifier("CoreUserRepository") UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

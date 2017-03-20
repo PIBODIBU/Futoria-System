@@ -101,5 +101,14 @@
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:4.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-taglibs:4.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-acl:4.2.2.RELEASE" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: com.futoria.core:futoria-core:1.0-SNAPSHOT">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/futoria-core-1.0-SNAPSHOT.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

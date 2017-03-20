@@ -74,6 +74,7 @@
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-entitymanager:5.0.12.Final" />
           <element id="library" level="project" name="Maven: javax.transaction:javax.transaction-api:1.2" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aspects:4.3.7.RELEASE" />
+          <element id="library" level="module" name="Maven: com.futoria.core:futoria-core:1.0-SNAPSHOT" module-name="Futoria-System" />
         </element>
       </element>
     </root>

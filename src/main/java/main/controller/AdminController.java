@@ -1,23 +1,22 @@
 package main.controller;
 
+import com.futoria.core.application.configuration.security.CustomUserDetails;
+import com.futoria.core.model.Permission;
+import com.futoria.core.model.Role;
+import com.futoria.core.model.User;
+import com.futoria.core.serializer.PermissionSerializer;
+import com.futoria.core.serializer.RoleSerializer;
+import com.futoria.core.serializer.UserSerializer;
+import com.futoria.core.service.UserService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import main.application.configuration.security.CustomUserDetails;
-import main.model.Permission;
-import main.model.Role;
-import main.model.User;
-import main.serializer.PermissionSerializer;
-import main.serializer.RoleSerializer;
-import main.serializer.UserSerializer;
-import main.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.security.Principal;
 
 @Controller
 public class AdminController {
@@ -33,7 +32,7 @@ public class AdminController {
     }
 
     @Autowired
-    public void setUserService(UserService userService) {
+    public void setUserService(@Qualifier("userService") UserService userService) {
         this.userService = userService;
     }
 

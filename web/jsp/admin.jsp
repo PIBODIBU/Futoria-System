@@ -15,7 +15,10 @@
 
 <md-content ng-controller="AppCtrl" md-colors="background">
     <%--Toolbars--%>
-    <md-content md-whiteframe="4" style="z-index: 999">
+    <md-content md-whiteframe="4"
+                md-colors="{background: 'white'}"
+                style="z-index: 999;
+                padding-left: 8px">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <div flex layout="row" layout-align="start center">
@@ -57,20 +60,21 @@
                 md-colors="{background: 'background'}"
                 md-is-locked-open="$mdMedia('gt-md')">
             <div ng-controller="SideNavCtrl">
-                <md-list flex>
-                    <md-list-item ng-click="null"
-                                  ng-repeat="item in menuItems">
-                        <md-icon md-svg-icon="{{item.icon}}"></md-icon>
-                        <p class="md-body-1" ng-style="{'color': '#424242'}"> {{item.title}} </p>
-                    </md-list-item>
+                <md-list flex
+                         style="margin-top: 8px">
+                    <div ng-repeat="item in menuItems">
+                        <md-list-item ng-click="null"
+                                      style="min-height: 40px; max-height: 40px"
+                                      ng-if="item.title != null">
+                            <md-icon md-svg-icon="{{item.icon}}"
+                                     style="margin-right: 24px; margin-top: 8px; margin-bottom: 6px"></md-icon>
+                            <p class="md-caption"
+                               ng-style="{'color': '#424242'}"> {{item.title}} </p>
+                        </md-list-item>
 
-                    <md-divider></md-divider>
-
-                    <md-list-item ng-click="null"
-                                  ng-repeat="item in menuItems">
-                        <md-icon md-svg-icon="{{item.icon}}"></md-icon>
-                        <p class="md-body-1" ng-style="{'color': '#424242'}"> {{item.title}} </p>
-                    </md-list-item>
+                        <md-divider ng-if="item.title == null"
+                                    style="margin-top: 8px; margin-bottom:8px;"></md-divider>
+                    </div>
                 </md-list>
 
                 <md-button ng-click="close()" class="md-primary" hide-gt-md>
@@ -112,7 +116,9 @@
             {'icon': 'account-multiple', 'title': 'Students'},
             {'icon': 'file-document', 'title': 'Tests'},
             {'icon': 'star', 'title': 'Starred'},
-            {'icon': 'archive', 'title': 'Archive'}
+            {},
+            {'icon': 'archive', 'title': 'Archive'},
+            {}
         ];
     });
 

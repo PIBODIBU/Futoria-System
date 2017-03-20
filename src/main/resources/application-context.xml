@@ -3,15 +3,14 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <mvc:annotation-driven/>
 
     <context:component-scan base-package="main"/>
+    <context:component-scan base-package="com.futoria.core"/>
 
     <mvc:resources mapping="/resources/**" location="/static/"/>
-    <mvc:resources mapping="/uploads/**" location="/uploads/"/>
 
     <!-- BEANS -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -38,7 +37,7 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url"
-                  value="jdbc:mysql://127.0.0.1:3306/ftr_system?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8"/>
+                  value="jdbc:mysql://127.0.0.1:3306/futoria?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8"/>
         <property name="username" value="root"/>
         <property name="password" value="root"/>
     </bean>
