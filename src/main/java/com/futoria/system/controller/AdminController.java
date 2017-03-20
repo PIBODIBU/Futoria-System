@@ -1,4 +1,4 @@
-package main.controller;
+package com.futoria.system.controller;
 
 import com.futoria.core.application.configuration.security.CustomUserDetails;
 import com.futoria.core.model.Permission;

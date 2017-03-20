@@ -1,4 +1,4 @@
-package main.application.configuration.security;
+package com.futoria.system.application.configuration.security;
 
 import com.futoria.core.application.configuration.security.UserDetailsServiceImpl;
 import com.futoria.core.repository.UserRepository;
