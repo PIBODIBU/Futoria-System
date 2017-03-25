@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('BaseApp',
-    ['ngMaterial', 'ngMessages', 'material.svgAssetsCache']);
+    ['ngMaterial', 'ngMessages', 'material.svgAssetsCache', 'ngAnimate']);
 
 app.config(function ($mdIconProvider, $mdThemingProvider) {
     $mdIconProvider.defaultIconSet('/resources/icons/mdi.svg');
@@ -38,3 +38,16 @@ app.config(function ($mdIconProvider, $mdThemingProvider) {
         hue: '800' // Default is '800'
     });
 });
+
+/*
+myModule.directive('my-directive', ['$animate', function($animate) {
+    return function(scope, element, attrs) {
+        element.on('click', function() {
+            if(element.hasClass('clicked')) {
+                $animate.removeClass(element, 'clicked');
+            } else {
+                $animate.addClass(element, 'clicked');
+            }
+        });
+    };
+}]);*/
