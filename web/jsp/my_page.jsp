@@ -36,7 +36,7 @@
         width: 48px;
         height: 48px;
         min-height: 48px;
-        min-width:;: 48 px;
+        min-width: 48px;
         position: relative;
         overflow: hidden;
         border-radius: 50%;
@@ -397,7 +397,6 @@
                 </md-card>
             </div>
 
-            <%--Statistics--%>
             <div flex="33"
                  class="card-wrapper">
                 <md-card style="margin: 0">
@@ -414,18 +413,71 @@
                 </md-card>
             </div>
 
+            <%--Statistics--%>
+            <div flex="100"
+                 style="margin-left: 8px">
+                <h1>Статистика</h1>
+            </div>
             <div flex="33"
                  ng-controller="StatisticsController as sCtrl"
                  ng-repeat="item in statistics"
                  class="card-wrapper">
                 <md-card style="margin: 0">
-                    <md-card-title style="color: white; background: {{item.colors.primaryDark}}">
+                    <md-card-title
+                            style="color: white; z-index:1; background: {{item.colors.primaryDark}}; position:relative;"
+                            md-whiteframe="4"
+                            ng-mouseenter="item.showSettingsButton = true"
+                            ng-mouseleave="item.showSettingsButton = false"
+                            layout-align="center">
                         <md-card-title-text>
                             <span class="md-headline">{{item.title}}</span>
                         </md-card-title-text>
+
+                        <md-menu>
+                            <md-button class="md-icon-button"
+                                       ng-click="ctrl.openMenu($mdMenu, $event)"
+                                       style="position: absolute; right: 8px; top: 25%;"
+                                       ng-show="item.showSettingsButton"
+                                       ng-click="item.showSettings = !item.showSettings">
+                                <md-icon md-svg-icon="settings"></md-icon>
+                            </md-button>
+
+                            <md-menu-content width="4">
+                                <md-menu-item>
+                                    <md-button ng-click="toggleGrid(item)"
+                                               ng-if="item.options.showGrid">
+                                        Сховати сітку
+                                    </md-button>
+                                    <md-button ng-click="toggleGrid(item)"
+                                               ng-if="!item.options.showGrid">
+                                        Показати сітку
+                                    </md-button>
+                                </md-menu-item>
+
+                                <md-menu-item>
+                                    <md-button disabled="disabled">
+                                        Експорт
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+
                     </md-card-title>
 
-                    <md-card-content style="background: {{item.colors.primary}}">
+                    <md-card-content style="position:relative; background: {{item.colors.primary}}">
+                        <%--<div md-colors="{background:'white'}"
+                             md-whiteframe="2"
+                             style="position:absolute; left: 0; right: 0;"
+                             ng-show="item.showSettings"
+                             layout-padding>
+                            <md-checkbox
+                                    ng-model="item.options.showGrid"
+                                    ng-change="toggleGrid(item)"
+                                    class="md-accent" flex>
+                                Показати сітку
+                            </md-checkbox>
+                        </div>--%>
+
                         <canvas class="chart chart-line"
                                 style="margin-top: 8px"
                                 ng-if="item.data"
@@ -453,6 +505,13 @@
             $mdMenu.open(ev);
         };
 
+        $scope.toggleGrid = function (item) {
+            item.options.showGrid = !item.options.showGrid;
+
+            item.options.scales.xAxes[item.options.scales.xAxes.length - 1].gridLines.display = item.options.showGrid;
+            item.options.scales.yAxes[item.options.scales.yAxes.length - 1].gridLines.display = item.options.showGrid;
+        };
+
         $scope.statistics = [
             {
                 'title': 'Тиждень',
@@ -463,27 +522,17 @@
                 'onClick': function (points, evt) {
                     console.log(points, evt);
                 },
-                'datasetOverride': [{yAxisID: 'y-axis-1'}, {yAxisID: 'y-axis-2'}],
+                'datasetOverride': [{yAxisID: 'y-axis-1'}],
                 'options': {
+                    showGrid: true,
                     scales: {
-                        xAxes: [
-                            {
-                                gridLines: {
-                                    color: "rgba(0, 0, 0, 0.1)"
-                                }
-                            }
-                        ],
+                        xAxes: [],
                         yAxes: [
                             {
                                 id: 'y-axis-1',
                                 type: 'linear',
                                 display: true,
                                 position: 'left'
-                            },
-                            {
-                                gridLines: {
-                                    color: "rgba(0, 0, 0, 0.1)"
-                                }
                             }
                         ]
                     }
@@ -492,7 +541,7 @@
             {
                 'title': 'Місяць',
                 'colors': {'primary': '#2196F3', 'primaryDark': '#1565C0'},
-                'labels': ["1", "2", "3", "4"],
+                'labels': ["1 тиж", "2 тиж", "3 тиж", "4 тиж"],
                 'series': ['Пройдено тестів'],
                 'data': [[30, 12, 43, 18]],
                 'onClick': function (points, evt) {
@@ -500,25 +549,15 @@
                 },
                 'datasetOverride': [{yAxisID: 'y-axis-1'}, {yAxisID: 'y-axis-2'}],
                 'options': {
+                    showGrid: true,
                     scales: {
-                        xAxes: [
-                            {
-                                gridLines: {
-                                    color: "rgba(0, 0, 0, 0.1)"
-                                }
-                            }
-                        ],
+                        xAxes: [],
                         yAxes: [
                             {
                                 id: 'y-axis-1',
                                 type: 'linear',
                                 display: true,
                                 position: 'left'
-                            },
-                            {
-                                gridLines: {
-                                    color: "rgba(0, 0, 0, 0.1)"
-                                }
                             }
                         ]
                     }
@@ -535,31 +574,26 @@
                 },
                 'datasetOverride': [{yAxisID: 'y-axis-1'}],
                 'options': {
+                    showGrid: true,
                     scales: {
-                        xAxes: [
-                            {
-                                gridLines: {
-                                    color: "rgba(0, 0, 0, 0.1)"
-                                }
-                            }
-                        ],
+                        xAxes: [],
                         yAxes: [
                             {
                                 id: 'y-axis-1',
                                 type: 'linear',
                                 display: true,
                                 position: 'left'
-                            },
-                            {
-                                gridLines: {
-                                    color: "rgba(0, 0, 0, 0.1)"
-                                }
                             }
                         ]
                     }
                 }
             }
         ];
+
+        for (var i = 0; i < $scope.statistics.length; i++) {
+            $scope.statistics[i].options.scales.xAxes.push({gridLines: {display: $scope.statistics[i].options.showGrid}});
+            $scope.statistics[i].options.scales.yAxes.push({gridLines: {display: $scope.statistics[i].options.showGrid}});
+        }
     });
 
     app.controller('SearchBarController', function ($scope) {
