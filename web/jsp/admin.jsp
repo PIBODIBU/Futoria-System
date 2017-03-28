@@ -31,9 +31,15 @@
         transform: translate(-50%, -50%);
         cursor: pointer;
     }
+
+    body {
+        max-width: 100%;
+        min-width: 100%;
+    }
 </style>
 
-<body ng-app="BaseApp" ng-cloak>
+<body ng-app="BaseApp"
+      ng-cloak>
 
 <div layout="column"
      flex
@@ -42,14 +48,6 @@
      ng-controller="AppCtrl"
      md-colors="background">
     <%--Toolbars--%>
-    <%--<div layout="column"
-         flex
-         layout-fill
-         md-whiteframe="8"
-         md-colors="{background: 'white'}"
-         style="z-index: 999">
-    </div>--%>
-
     <md-toolbar md-whiteframe="8">
         <div class="md-toolbar-tools">
             <div flex layout="row" layout-align="start center">
@@ -61,8 +59,7 @@
                 <md-autocomplete
                         style="margin-left:16px;"
                         flex="40"
-                        ng-disabled="false"
-                        md-no-cache="false"
+                        hide-xs
                         md-selected-item="ctrl.selectedItem"
                         md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
                         md-search-text="ctrl.searchText"
@@ -87,30 +84,8 @@
                 <md-icon md-svg-icon="view-grid"
                          style="fill: #757575;!important;"></md-icon>
             </md-button>
-
-            <div class="image-cropper"
-                 md-whiteframe="{{h}}"
-                 ng-init="h = 2;"
-                 ng-mouseenter="h = 4"
-                 ng-mousedown="h = 8"
-                 ng-mouseup="h = 4"
-                 ng-mouseleave="h = 2">
-                <img ng-src="https://pp.userapi.com/c626518/v626518261/4ff9d/bH7BfQjE924.jpg"
-                     class="avatar gallery-image fade-animation"
-                     ng-click="avatarClick()">
-            </div>
         </div>
     </md-toolbar>
-
-    <%--<md-toolbar>
-        <div class="md-toolbar-tools">
-            <md-button class="md-raised md-accent">New test</md-button>
-
-            <md-button class="md-icon-button" aria-label="More">
-                <md-icon md-svg-icon="done"></md-icon>
-            </md-button>
-        </div>
-    </md-toolbar>--%>
 
     <%--Main content--%>
     <div layout="row"
@@ -120,34 +95,6 @@
         <div layout="column"
              style="margin-right: 8px">
             <jsp:include page="template/sidenav.jsp"/>
-
-            <div md-whiteframe="{{height}}"
-                 ng-init="height = 2"
-                 ng-mouseenter="height = 8"
-                 ng-mouseleave="height = 2"
-                 layout="row"
-                 layout-padding
-                 style="margin: 0px; max-width: 250px; cursor: pointer"
-                 md-colors="{background: 'accent'}">
-                <md-icon md-svg-icon="message-alert"
-                         style="fill: white; font-size: 48px"></md-icon>
-                <span class="md-subtitle"
-                      flex>Ви отримали допуск до тесту</span>
-            </div>
-
-            <div md-whiteframe="{{heigh}}"
-                 ng-init="heigh = 2"
-                 ng-mouseenter="heigh = 8"
-                 ng-mouseleave="heigh = 2"
-                 layout="row"
-                 layout-padding
-                 style="margin-top: 8px; max-width: 250px; cursor: pointer"
-                 md-colors="{background: 'accent'}">
-                <md-icon md-svg-icon="account-plus"
-                         style="fill: white; font-size: 48px"></md-icon>
-                <span class="md-subtitle"
-                      flex>Пономар Олександр хоче додати Вас у друзі</span>
-            </div>
         </div>
 
         <md-content layout="column"
@@ -186,30 +133,13 @@
         $scope.myRoles = ${roles};
         $scope.myPermissions = ${my_permissions};
         $scope.borodaPermissions = ${other_permissions};
+        $scope.user = ${user};
 
         $scope.avatarClick = function () {
         }
     });
 
     app.controller('SearchBarController', function ($scope) {
-        function loadAll() {
-            var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,\
-              Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,\
-              Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana,\
-              Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina,\
-              North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina,\
-              South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia,\
-              Wisconsin, Wyoming';
-
-            return allStates.split(/, +/g).map(function (state) {
-                return {
-                    value: state.toLowerCase(),
-                    display: state
-                };
-            });
-        };
-
-
     });
 
     app.controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {

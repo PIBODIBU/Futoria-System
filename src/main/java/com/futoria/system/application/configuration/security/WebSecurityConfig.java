@@ -22,9 +22,10 @@ public class WebSecurityConfig extends FutoriaWebSecurityConfig {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/**").access("hasRole('ROLE_SYS_ADMIN')")
+                .antMatchers("/admin/**").access("hasRole('ROLE_SYS_ADMIN') or hasRole('ROLE_UNI_ADMIN')")
+                .antMatchers("/me/**").access("isAuthenticated()")
                 .and()
-                .formLogin().defaultSuccessUrl("/admin").loginPage("/login").failureUrl("/login?error")
+                .formLogin().defaultSuccessUrl("/me/").loginPage("/login").failureUrl("/login?error")
                 .usernameParameter("username").passwordParameter("password")
                 .and()
                 .logout().logoutSuccessUrl("/login/?logout")

@@ -64,9 +64,10 @@ public class AdminController {
                 .getPrincipal())
                 .getUser();
 
+        modelAndView.addObject("user", gson.toJson(user));
         modelAndView.addObject("roles", gson.toJson(user.getRoles()));
-        modelAndView.addObject("my_permissions", gson.toJson(userService.getMyPermissions()));
-        modelAndView.addObject("other_permissions", gson.toJson(userService.getUserPermissions(2L)));
+        modelAndView.addObject("my_permissions", gson.toJson(permissionService.getMyPermissions()));
+        modelAndView.addObject("other_permissions", gson.toJson(permissionService.getUserPermissions(2L)));
 
         return modelAndView;
     }

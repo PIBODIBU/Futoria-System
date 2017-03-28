@@ -1,9 +1,9 @@
 'use strict';
 
 var app = angular.module('BaseApp',
-    ['ngMaterial', 'ngMessages', 'material.svgAssetsCache', 'ngAnimate']);
+    ['ngMaterial', 'ngMessages', 'material.svgAssetsCache', 'ngAnimate', 'chart.js', 'ui.bootstrap']);
 
-app.config(function ($mdIconProvider, $mdThemingProvider) {
+app.config(function ($mdIconProvider, $mdThemingProvider, ChartJsProvider) {
     $mdIconProvider.defaultIconSet('/resources/icons/mdi.svg');
 
     $mdThemingProvider.definePalette('white', {
@@ -37,17 +37,11 @@ app.config(function ($mdIconProvider, $mdThemingProvider) {
         palette: 'accent', // Default is 'primary', any basic material palette and extended palettes are available
         hue: '800' // Default is '800'
     });
+
+    Chart.defaults.global.colors = ['#009688', '#9c27b0', '#f44336', '#795548', '#3F51B5', '#4CAF50', '#FF9800'];
 });
 
-/*
-myModule.directive('my-directive', ['$animate', function($animate) {
-    return function(scope, element, attrs) {
-        element.on('click', function() {
-            if(element.hasClass('clicked')) {
-                $animate.removeClass(element, 'clicked');
-            } else {
-                $animate.addClass(element, 'clicked');
-            }
-        });
-    };
-}]);*/
+app.controller('StatisticsController', ['$scope', function ($scope) {
+    Chart.defaults.global.defaultFontColor = '#ffffff';
+    Chart.defaults.global.showLines = false;
+}]);

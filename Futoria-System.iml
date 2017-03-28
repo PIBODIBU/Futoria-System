@@ -111,5 +111,19 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="angular-chart" level="application" />
+    <orderEntry type="library" name="angular" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="angular-material" level="application" />
+    <orderEntry type="library" name="angular-route" level="application" />
+    <orderEntry type="library" name="angular-resource" level="application" />
+    <orderEntry type="library" name="angular-animate" level="application" />
+    <orderEntry type="library" name="angular-aria" level="application" />
+    <orderEntry type="library" name="angular-messages" level="application" />
+    <orderEntry type="library" name="svg-assets-cache" level="application" />
+    <orderEntry type="library" name="angular2" level="application" />
+    <orderEntry type="library" name="Chart" level="application" />
+    <orderEntry type="library" name="ui-bootstrap" level="application" />
+    <orderEntry type="library" name="ui-bootstrap-tpls" level="application" />
   </component>
 </module>
