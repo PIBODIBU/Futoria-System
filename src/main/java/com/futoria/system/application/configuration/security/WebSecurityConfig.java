@@ -24,6 +24,7 @@ public class WebSecurityConfig extends FutoriaWebSecurityConfig {
         http.authorizeRequests()
                 .antMatchers("/admin/**").access("hasRole('ROLE_SYS_ADMIN') or hasRole('ROLE_UNI_ADMIN')")
                 .antMatchers("/me/**").access("isAuthenticated()")
+                .antMatchers("/me/tests/**").access("hasRole('ROLE_UNI_PROFESSOR')")
                 .and()
                 .formLogin().defaultSuccessUrl("/me/").loginPage("/login").failureUrl("/login?error")
                 .usernameParameter("username").passwordParameter("password")

@@ -1,9 +1,18 @@
+<%@ page import="com.futoria.core.application.configuration.security.FutoriaUserDetails" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="com.futoria.core.model.user.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<%
+    User user = ((FutoriaUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
+%>
+
 <script type="text/javascript">
     var menuItems = [];
+
+    console.log(relativeUrl);
 
     menuItems.push(
         {
@@ -61,12 +70,27 @@
     </script>
 </sec:authorize>
 
+<sec:authorize access="hasRole('ROLE_UNI_PROFESSOR')">
+    <script type="text/javascript">
+        menuItems.push(
+            {
+                'header': 'Меню викладача',
+                'items': [
+                    {'icon': 'file-document-box', 'title': 'Мої тести', 'link': '/me/tests/'}
+                ]
+            }
+        );
+    </script>
+</sec:authorize>
+
 <sec:authorize access="isAuthenticated()">
     <script type="text/javascript">
         app.controller('SideNavCtrl', function ($scope) {
             $scope.menuItems = menuItems;
 
-            console.log(menuItems);
+            this.dispatchItemClick = function (menuItem) {
+                window.location.href = menuItem.link;
+            }
         });
     </script>
 
@@ -105,13 +129,14 @@
 
             <div layout="column"
                  style="padding: 8px;">
-                <span class="md-body-1">{{user.firstName}} {{user.lastName}}</span>
-                <span class="md-caption" style="color: #616161">{{user.email}}</span>
+                    <%--<span class="md-body-1">{{user.firstName}} {{user.lastName}}</span>--%>
+                <span class="md-body-1"><%=user.getFirstName()%> <%=user.getLastName()%></span>
+                <span class="md-caption" style="color: #616161"><%=user.getEmail()%></span>
             </div>
         </div>
 
         <md-content style="background: transparent;"
-                    ng-controller="SideNavCtrl">
+                    ng-controller="SideNavCtrl as ctrl">
             <div md-whiteframe="3"
                  style="background: white; margin: 16px 8px 16px 0"
                  ng-repeat="menuItem in menuItems">
@@ -129,7 +154,7 @@
                 <md-list flex
                          ng-show="menuItem.opened"
                          class="md-dense">
-                    <md-list-item ng-click="null"
+                    <md-list-item ng-click="ctrl.dispatchItemClick(listItem)"
                                   ng-repeat="listItem in menuItem.items"
                                   class="md-2-line">
                         <md-icon md-svg-icon="{{listItem.icon}}"

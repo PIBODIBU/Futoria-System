@@ -465,19 +465,6 @@
                     </md-card-title>
 
                     <md-card-content style="position:relative; background: {{item.colors.primary}}">
-                        <%--<div md-colors="{background:'white'}"
-                             md-whiteframe="2"
-                             style="position:absolute; left: 0; right: 0;"
-                             ng-show="item.showSettings"
-                             layout-padding>
-                            <md-checkbox
-                                    ng-model="item.options.showGrid"
-                                    ng-change="toggleGrid(item)"
-                                    class="md-accent" flex>
-                                Показати сітку
-                            </md-checkbox>
-                        </div>--%>
-
                         <canvas class="chart chart-line"
                                 style="margin-top: 8px"
                                 ng-if="item.data"
@@ -595,20 +582,6 @@
             $scope.statistics[i].options.scales.yAxes.push({gridLines: {display: $scope.statistics[i].options.showGrid}});
         }
     });
-
-    app.controller('SearchBarController', function ($scope) {
-    });
-
-    app.controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-        $scope.close = function () {
-            // Component lookup should always be available since we are not using `ng-if`
-            $mdSidenav('left').close()
-                .then(function () {
-                    $log.debug("close LEFT is done");
-                });
-
-        };
-    })
 </script>
 </body>
 </html>

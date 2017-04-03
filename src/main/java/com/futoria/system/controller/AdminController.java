@@ -1,10 +1,9 @@
 package com.futoria.system.controller;
 
 import com.futoria.core.application.configuration.security.FutoriaUserDetails;
-import com.futoria.core.application.configuration.security.FutoriaUserDetails;
-import com.futoria.core.model.Permission;
-import com.futoria.core.model.Role;
-import com.futoria.core.model.User;
+import com.futoria.core.model.security.Permission;
+import com.futoria.core.model.security.Role;
+import com.futoria.core.model.user.User;
 import com.futoria.core.serializer.PermissionSerializer;
 import com.futoria.core.serializer.RoleSerializer;
 import com.futoria.core.serializer.UserSerializer;

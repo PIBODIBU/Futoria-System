@@ -45,3 +45,6 @@ app.controller('StatisticsController', ['$scope', function ($scope) {
     Chart.defaults.global.defaultFontColor = '#ffffff';
     Chart.defaults.global.showLines = false;
 }]);
+
+app.controller('SearchBarController', function ($scope) {
+});
